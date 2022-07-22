@@ -1,4 +1,4 @@
-# Solo_Project
+# Far&Car
 
 ## 게임 개요
 Project. 1) 3D racing game
