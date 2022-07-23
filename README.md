@@ -3,6 +3,9 @@
 ## 게임 소개
 ### 장르
 - Casual, Racing
+
+- motive
+ - TempleRun
 ### 시스템
 
 **1. 타이틀**
