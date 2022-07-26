@@ -5,25 +5,30 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float EnemyHP = 100.0f;
-    public bool isDead = false;
+    public float BulletDamage;
+    SpawnPoints spawnPoints;
+    Bullet bullet;
 
     void Start()
     {
-        isDead = false;
+
     }
 
     void Update()
     {
-
-
-        if (EnemyHP > 0)
+        if (EnemyHP <= 0)
         {
-            die();
+            //Animator.SetTrigger("EnemyAttacked");    
+            gameObject.SetActive(false);
+           // spawnPoints.PlayerMoney += 40;
         }
     }
 
-    void die()
+    void OnTriggerEnter(Collider other)
     {
-        isDead = true;
+        if (other.tag == "Bullet")
+        {
+            EnemyHP -= BulletDamage;
+        }
     }
 }

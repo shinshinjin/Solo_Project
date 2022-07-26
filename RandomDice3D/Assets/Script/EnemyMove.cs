@@ -27,10 +27,14 @@ public class EnemyMove : MonoBehaviour
                 nextTarget += 1;
                 GoalTarget = GameManager.instance.target[nextTarget];
                 GetComponent<NavMeshAgent>().SetDestination(GoalTarget.position);
-
             }
             yield return null;
         }
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
     }
 
 }

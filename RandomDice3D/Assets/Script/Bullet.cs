@@ -4,42 +4,45 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 5f;
-    private Rigidbody rigid;
+    public float speed; // 총알속도
+    public Transform target; // 타겟
+    public bool homing; // 유도 on off
+    public Vector3 disVec; // 유도 위치
+    public float timerForDel; // 자동삭제 타이머
+    public float timer; // 자동삭제 타이머
+    EnemyController enemyController;
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
-        rigid.velocity = transform.forward * speed;
+        target = FindObjectOfType<EnemyMove>().transform;
+        // bullet.setTarget(WaveManager.Instance.GetRandomEnemy());
+    }
 
-        Destroy(gameObject, 3f);
+    void Update()
+    {
+        if (timer > timerForDel)
+        {
+            Destroy(gameObject);
+        }
+
+        else
+        {
+            timer += Time.deltaTime;
+            if (homing)
+            {
+                disVec = (target.transform.position - transform.position).normalized;
+            }
+
+            transform.position += disVec * Time.deltaTime * speed;
+            transform.forward = disVec;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            EnemyMove enemymove = other.GetComponent<EnemyMove>();
-
-            if (enemymove != null)
-            {
-                Die();
-            }
+            Destroy(gameObject);
         }
     }
-
-    void Die()
-    {
-        return;
-    }
-
-    /* 
-    public float Speed = 0.1f;
-
-    void Update()
-    {
-        transfrom.Translate(0f, 0f, Speed);
-    }
-    */
-
 }

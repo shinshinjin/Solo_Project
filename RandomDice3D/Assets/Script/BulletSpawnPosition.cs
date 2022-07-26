@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class BulletSpawnPosition : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public GameObject bulletPrefab;
+    public float FirePos;
+
+    private Transform target;
+    private float spawnRate;
+    private float timeAfterSpawn;
+
     void Start()
     {
-        
+        timeAfterSpawn = 0f;
+        spawnRate = 2f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        target = FindObjectOfType<EnemyMove>()?.transform;
+        timeAfterSpawn += Time.deltaTime;
+
+        if (timeAfterSpawn > spawnRate)
+        {
+            timeAfterSpawn = 0f;
+
+            GameObject Bullet
+                = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+            spawnRate = 1f;
+        }
     }
 }

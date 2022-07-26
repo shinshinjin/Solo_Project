@@ -11,6 +11,7 @@ public class SpawnPoints : MonoBehaviour
     public float BuyMoney = 10f;
     public Transform OriginSpawnTransform;
 
+    private float SpaceCount = 25;
     private BoxCollider area;
     private List<GameObject> gameObjects = new List<GameObject>();
     private Transform[,] spawnPositions;
@@ -26,11 +27,10 @@ public class SpawnPoints : MonoBehaviour
     {
         if (PlayerMoney >= BuyMoney)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && SpaceCount > 0)
             {
-                //PlayerMoney -= BuyMoney;
-                //BuyMoney += 10f;
                 Spawn();
+                SpaceCount--;
             }
         }
     }
