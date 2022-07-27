@@ -5,16 +5,19 @@ using UnityEngine;
 public class MergeDice : MonoBehaviour
 {
     private bool isClick;
+    public DiceManager diceManager;
 
     private void OnMouseDown()
     {
         isClick = false;
+        diceManager = GetComponent<DiceManager>();
     }
 
     private void OnMouseDrag()
     {
         Vector3 vpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        vpos.z = 0f;
+        Debug.Log(vpos);
+        vpos.y = 0;
         transform.position = vpos;
     }
 
@@ -25,16 +28,6 @@ public class MergeDice : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        string clickObject = transform.name.Substring(transform.name.LastIndexOf("_") + 1);
-        string collisionObject = other.name.Substring(other.name.LastIndexOf("_") + 1);
-        int codeNumber = int.Parse(clickObject) + int.Parse(collisionObject);
-
-        if (isClick && clickObject == collisionObject)
-        {
-            GameObject newObject = (GameObject)Instantiate(Resources.Load("FireDice_" + codeNumber), transform.position, Quaternion.identity);
-            newObject.name = "FireDice_" + codeNumber;
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
+        
     }
 }

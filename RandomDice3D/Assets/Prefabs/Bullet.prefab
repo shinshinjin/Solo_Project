@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  target: {fileID: 0}
+  target: {fileID: 6079683351578643997, guid: c957bda31a73ec943b1f050c5ca414e2, type: 3}
   homing: 1
   disVec: {x: 0, y: 0, z: 0}
-  timerForDel: 20
+  timerForDel: 1
   timer: 0

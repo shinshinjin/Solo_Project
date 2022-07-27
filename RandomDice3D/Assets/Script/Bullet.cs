@@ -5,7 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed; // 총알속도
-    public Transform target; // 타겟
+    //public Transform target; // 타겟
+    public GameObject target; // 타겟
     public bool homing; // 유도 on off
     public Vector3 disVec; // 유도 위치
     public float timerForDel; // 자동삭제 타이머
@@ -14,20 +15,28 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        target = FindObjectOfType<EnemyMove>().transform;
+        //target = FindObjectOfType<EnemyMove>().transform;
+        target = GameObject.FindGameObjectWithTag("Enemy");
         // bullet.setTarget(WaveManager.Instance.GetRandomEnemy());
     }
 
     void Update()
     {
-        if (timer > timerForDel)
+        //if (timer > timerForDel)
+        //{
+        //    Destroy(gameObject);
+        //}
+        if (target.activeSelf == false)
         {
             Destroy(gameObject);
         }
-
+        else if (target.transform.position == transform.position)
+        {
+            Destroy(gameObject);
+        }
         else
         {
-            timer += Time.deltaTime;
+            //timer += Time.deltaTime;
             if (homing)
             {
                 disVec = (target.transform.position - transform.position).normalized;
@@ -38,11 +47,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            Destroy(gameObject);
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Enemy")
+    //    {
+    //        other.SetActive(false);
+    //    }
+    //}
 }

@@ -20,17 +20,20 @@ public class BulletSpawnPosition : MonoBehaviour
 
     void Update()
     {
-        target = FindObjectOfType<EnemyMove>()?.transform;
-        timeAfterSpawn += Time.deltaTime;
-
-        if (timeAfterSpawn > spawnRate)
+        if (FindObjectOfType<EnemyMove>() != null)
         {
-            timeAfterSpawn = 0f;
+            timeAfterSpawn += Time.deltaTime;
 
-            GameObject Bullet
-                = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            if (timeAfterSpawn > spawnRate)
+            {
+                timeAfterSpawn = 0f;
 
-            spawnRate = 1f;
+                GameObject Bullet
+                    = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+                spawnRate = 1f;
+            }
         }
+
     }
 }

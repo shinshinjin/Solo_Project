@@ -7,10 +7,26 @@ public class EnemySpawner : MonoBehaviour
     public Transform enemyPrefab;
     public Transform spawnPoint;
     public float timeBetweenWaves = 5f;
+    public int MaxEnemyCount = 5; // 최대 적 수
+    public Vector3 _poolPosition = new Vector3(100, 100, 100);
+
 
     private List<EnemyMove> _enemies = new List<EnemyMove>(); // enemy 위치를 담을 곳.
+    //private GameObject[] _enemies; // enemy 위치를 담을 곳.
     private float countDown = 2f;
     private int waveIndex = 1;
+    private float _coolTime;
+
+    //void Start()
+    //{
+    //    _enemies = new GameObject[MaxEnemyCount];
+    //    for(int i = 0; i < MaxEnemyCount; ++i)
+    //    {
+    //        _enemies[i] = Instantiate(enemyPrefab, _poolPosition, Quaternion.identity);
+    //    }
+    //    _coolTime = 0;
+        
+    //}
 
     void Update()
     {
@@ -36,11 +52,5 @@ public class EnemySpawner : MonoBehaviour
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
-
-    //public EnemyMove GetRandomEnemy() // 위치를 받은곳을 랜덤 위치로 지정한다.
-    //{
-    //    int randomIndex = Random.Range(0, _enemies.Length);
-    //    return _enemies[randomIndex];
-    //}
 }
 

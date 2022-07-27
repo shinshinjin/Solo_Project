@@ -1202,6 +1202,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6079683351578643997, guid: c957bda31a73ec943b1f050c5ca414e2, type: 3}
   spawnPoint: {fileID: 2047728613}
   timeBetweenWaves: 2
+  MaxEnemyCount: 1
+  _poolPosition: {x: 100, y: 100, z: 100}
 --- !u!4 &1179610172
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,11 +2263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 8413987047021008487, guid: 169fce4738a9e134fb100d5d2a56f93d, type: 3}
-  - {fileID: 2259012972615087468, guid: 57cf6862d52136e498f51afa765b6713, type: 3}
-  - {fileID: 2960998062370728501, guid: f41c1e45dedb831418eb438128930b51, type: 3}
-  - {fileID: 5747875751746377533, guid: fba27ef223c561347a8400242ea97e96, type: 3}
-  - {fileID: 8587633376807423779, guid: eeaf01ecbfbf3b74aa4734236c488e9d, type: 3}
+  - {fileID: 4592432171119593156, guid: 41dbacf76cd37ec4093cc771c0493037, type: 3}
   PlayerMoney: 100
   BuyMoney: 10
   OriginSpawnTransform: {fileID: 1966942644}
