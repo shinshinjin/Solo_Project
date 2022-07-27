@@ -27,7 +27,20 @@ public class Bullet : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
-        if (target.activeSelf == false && target != null)
+
+       
+
+        if(target == null)
+        {
+            Destroy(gameObject);
+        }
+
+        MeshRenderer mr = target.GetComponent<MeshRenderer>();
+       if (mr.enabled == false)
+        {
+            Destroy(gameObject);
+        }
+        else if (target.activeSelf == false && target != null)
         {
             Destroy(gameObject);
         }

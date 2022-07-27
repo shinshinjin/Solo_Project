@@ -9,16 +9,37 @@ public class EnemyController : MonoBehaviour
     SpawnPoints spawnPoints;
     public Bullet bulletPrefab;
 
+    private bool DieCheck=false;
+    private void Start()
+    {
+       spawnPoints = GameObject.Find("SpawnPoints").GetComponent<SpawnPoints>();
+    }
     void Update()
     {
         if (EnemyHP <= 0)
         {
             //Animator.SetTrigger("EnemyAttacked");    
-            gameObject.SetActive(false);
-           // spawnPoints.PlayerMoney += 40;
+            StartCoroutine(Die());
+
+            if(DieCheck == false)
+            {
+                spawnPoints.PlayerMoney += 50f;
+                DieCheck = true;
+            }
+            
+            // spawnPoints.PlayerMoney += 40;
         }
     }
+    IEnumerator Die()
+    {
+        MeshRenderer MR = this.gameObject.GetComponent<MeshRenderer>();
+        MR.enabled = false;
 
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+
+    }
+  
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Bullet")

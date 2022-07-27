@@ -17,18 +17,26 @@ public class EnemySpawner : MonoBehaviour
     private int waveIndex = 1;
     private float _coolTime;
 
+    [SerializeField]
+    private int MaxWave =10 ;
+
     //void Start()
     //{
+
     //    _enemies = new GameObject[MaxEnemyCount];
     //    for(int i = 0; i < MaxEnemyCount; ++i)
     //    {
     //        _enemies[i] = Instantiate(enemyPrefab, _poolPosition, Quaternion.identity);
     //    }
     //    _coolTime = 0;
-        
+
     //}
 
-    void Update()
+    private void Start()
+    {
+        StartCoroutine(SpawnWave());
+    }
+    /*void Update()
     {
         if (countDown <= 0f)
         {
@@ -36,14 +44,15 @@ public class EnemySpawner : MonoBehaviour
             countDown = timeBetweenWaves;
         }
         countDown -= Time.deltaTime / 2;
-    }
+    }*/
 
     IEnumerator SpawnWave()
     {
-        waveIndex++;
-        for (int i = 0; i < waveIndex; i++)
+       
+        for (int i = 0; i < MaxWave; i++)
         {
             SpawnEnemy();
+            
             yield return new WaitForSeconds(5f);
         }
     }
@@ -51,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        waveIndex++;
     }
 }
 

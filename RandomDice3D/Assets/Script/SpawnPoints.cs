@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SpawnPoints : MonoBehaviour
 {
     public GameObject[] prefabs;
     public static SpawnPoints Instance;
     public bool[,] isDice;
-    public float PlayerMoney = 10000f;
+    public float PlayerMoney = 100f;
     public float BuyMoney = 10f;
     public Transform OriginSpawnTransform;
 
@@ -16,6 +18,7 @@ public class SpawnPoints : MonoBehaviour
     private List<GameObject> gameObjects = new List<GameObject>();
     private Transform[,] spawnPositions;
 
+    public TextMeshProUGUI restMoney_TXT;
 
     void Start()
     {
@@ -25,12 +28,25 @@ public class SpawnPoints : MonoBehaviour
 
     void Update()
     {
+        Texting();
+    }
+    void Texting()
+    {
+        restMoney_TXT.text = PlayerMoney.ToString();
+    }
+
+    public void Dice_Generate_BTN()
+    {
         if (PlayerMoney >= BuyMoney)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && SpaceCount > 0)
+            if ( SpaceCount > 0)
             {
                 Spawn();
                 SpaceCount--;
+                PlayerMoney -= BuyMoney;
+                BuyMoney += 10f;
+
+                
             }
         }
     }
