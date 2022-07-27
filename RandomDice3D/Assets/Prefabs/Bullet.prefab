@@ -133,3 +133,4 @@ MonoBehaviour:
   disVec: {x: 0, y: 0, z: 0}
   timerForDel: 1
   timer: 0
+  damage: 25

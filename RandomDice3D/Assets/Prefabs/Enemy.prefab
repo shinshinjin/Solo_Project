@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyHP: 100
-  BulletDamage: 25
+  BulletDamage: 0
+  bulletPrefab: {fileID: 1180520470573249464, guid: 5cab16f74ba44d1468eea3077925a75b, type: 3}
 --- !u!95 &-8942149552582793507
 Animator:
   serializedVersion: 4
@@ -178,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 6079683351578643993}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa2e0a6c082623541abb0d4b40147f0e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -7,12 +7,7 @@ public class EnemyController : MonoBehaviour
     public float EnemyHP = 100.0f;
     public float BulletDamage;
     SpawnPoints spawnPoints;
-    Bullet bullet;
-
-    void Start()
-    {
-
-    }
+    public Bullet bulletPrefab;
 
     void Update()
     {
@@ -28,7 +23,9 @@ public class EnemyController : MonoBehaviour
     {
         if (other.tag == "Bullet")
         {
-            EnemyHP -= BulletDamage;
+            Debug.Log("∫“∑ø »Æ¿Œ");
+            //EnemyHP -= BulletDamage;
+            EnemyHP -= bulletPrefab.damage;
         }
     }
 }
