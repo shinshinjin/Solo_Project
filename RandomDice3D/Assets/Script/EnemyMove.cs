@@ -7,6 +7,8 @@ public class EnemyMove : MonoBehaviour
 {
     public float EnemySpeed;
     public Transform GoalTarget;
+    public Transform GaveOverTarget;
+    public float PlayerHP;
     int nextTarget;
 
     private void Start()

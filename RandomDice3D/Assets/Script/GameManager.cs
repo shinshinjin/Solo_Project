@@ -7,13 +7,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
     public static GameManager instance;
     public bool IsTouch;
     public Transform[] target;
+    public GameObject TempGameOBJ;
 
-    private Ray ray;
-    private RaycastHit hit;
+    private bool IsFirst;
+    private Vector3 resetPosition;
+
+    private int _layerMask;
+    private DiceManager _pickedDice;
+    private Vector3 _dicePrevPosition;
 
     DiceManager DM;
 
@@ -26,65 +30,78 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-
+        LayerMask mask = LayerMask.NameToLayer("Dice");
+        _layerMask = (1 << mask.value);
     }
 
     private void Update()
     {
+        // 1. 마우스 버튼을 눌렀을 때 
         if (Input.GetMouseButtonDown(0))
         {
+            pickDice();
             IsFirst = true;
             IsTouch = false;
         }
+
         if (Input.GetMouseButton(0))
         {
-            raycast_Check();
+            moveDice();
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             IsTouch = true;
-
-            StartCoroutine(DelayReset());
+            releaseDice();
         }
     }
 
-    IEnumerator DelayReset()
+    private void pickDice()
     {
-        yield return new WaitForSeconds(0.1f);
-        //원래 위치로 복귀
-        if (TempGameOBJ != null)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100f, _layerMask))
         {
-            TempGameOBJ.transform.position = resetPosition;
+            _pickedDice = hit.collider.GetComponent<DiceManager>();
+            Debug.Assert(_pickedDice != null);
+
+            _dicePrevPosition = _pickedDice.transform.position;
+
+            Vector3 diceNewPosition = _dicePrevPosition;
+            diceNewPosition.y += PICKED_HEIGHT;
+            _pickedDice.transform.position = diceNewPosition;
         }
     }
 
-    private bool IsFirst;
-    private Vector3 resetPosition;
-
-    public GameObject TempGameOBJ;
-
-    void raycast_Check()
+    private static readonly float PICKED_HEIGHT = 1f;
+    private void moveDice()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
+        if (_pickedDice == null)
         {
-            Debug.Log(hit.collider.gameObject.name);
-
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z);
-            Vector3 vec3 = Camera.main.ScreenToWorldPoint(mousePos);
-
-            if (hit.collider.gameObject.name == "dicePrefab2 1(Clone)")
-            {
-                if (IsFirst == true)
-                {
-                    TempGameOBJ = hit.collider.gameObject;
-                    resetPosition = hit.collider.transform.position;
-                    IsFirst = false;
-                }
-
-                TempGameOBJ.transform.position = new Vector3(vec3.x, 0.05f, vec3.z);
-            }
+            return;
         }
+
+        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        newPosition.y = _pickedDice.transform.position.y;
+        _pickedDice.transform.position = newPosition;
     }
+
+    private void releaseDice()
+    {
+        if (_pickedDice == null)
+        {
+            return;
+        }
+
+        // TO DO : 위치 정렬
+
+        Vector3 newPosition = _pickedDice.transform.position;
+        newPosition.y -= PICKED_HEIGHT;
+        _pickedDice.transform.position = newPosition;
+
+        _pickedDice = null;
+        _dicePrevPosition = Vector3.zero;
+    }
+
+    
 }

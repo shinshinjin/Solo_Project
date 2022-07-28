@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BulletSpawnPosition : MonoBehaviour
 {
-
     public GameObject bulletPrefab;
     public float FirePos;
 
+    private DiceManager DM;
+    private Bullet bullet;
     private Transform target;
     private float spawnRate;
     private float timeAfterSpawn;
@@ -16,6 +17,7 @@ public class BulletSpawnPosition : MonoBehaviour
     {
         timeAfterSpawn = 0f;
         spawnRate = 2f;
+        DM = gameObject.GetComponent<DiceManager>();
     }
 
     void Update()
@@ -27,6 +29,7 @@ public class BulletSpawnPosition : MonoBehaviour
             if (timeAfterSpawn > spawnRate)
             {
                 timeAfterSpawn = 0f;
+
 
                 GameObject Bullet
                     = Instantiate(bulletPrefab, transform.position, transform.rotation);
@@ -41,6 +44,7 @@ public class BulletSpawnPosition : MonoBehaviour
                   }
                 Gameobject a = gameobject.transform.getparent
                 Gameobject b = a.transform.get...*/
+
 
                 spawnRate = 1f;
             }

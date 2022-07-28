@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4592432171119593157}
   - component: {fileID: 8250143169931264025}
   - component: {fileID: 6791016533494839500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: dicePrefab2 1
   m_TagString: Dice
   m_Icon: {fileID: 0}

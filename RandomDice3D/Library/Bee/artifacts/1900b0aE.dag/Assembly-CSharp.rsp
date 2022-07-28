@@ -356,9 +356,8 @@
 "Assets/Script/EnemyMove.cs"
 "Assets/Script/EnemySpawner.cs"
 "Assets/Script/GameManager.cs"
-"Assets/Script/MergeDice.cs"
-"Assets/Script/PlayerController.cs"
 "Assets/Script/SpawnPoints.cs"
+"Assets/Script/StageUI.cs"
 -langversion:9.0
 
 /deterministic

@@ -15,6 +15,8 @@ public class DiceManager : MonoBehaviour
 {
     public DiceType type; // 주사위의 타입
     Renderer diceColor;
+    SpawnPoints spawnPoints;
+    Bullet bullet;
     public Transform shooter;
 
     private List<GameObject> LevelBulletList;
@@ -34,11 +36,25 @@ public class DiceManager : MonoBehaviour
         }
     }
 
+    public enum State { PICKED, RELEASED }
+    public State CurrentState { get; set; } = State.RELEASED;
+
+    public void Pick()
+    {
+        
+    }
+
+    
     void Update()
     {
+        if (CurrentState == State.PICKED)
+        {
+           
+        }
+
         switch (type)
         {
-            case DiceType.Fire: diceColor.material.color = Color.red; break;
+            case DiceType.Fire:diceColor.material.color = Color.red; break;
             case DiceType.Yellow: diceColor.material.color = Color.yellow; break;
             case DiceType.Blue: diceColor.material.color = Color.blue; break;
             case DiceType.Green: diceColor.material.color = Color.green; break;
@@ -70,6 +86,13 @@ public class DiceManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Dice")
+        {
+            //LevelUp(other.gameObject);
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         DiceManager DM;
@@ -77,6 +100,9 @@ public class DiceManager : MonoBehaviour
 
         GameManager GM;
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        SpawnPoints SP;
+        SP = GameObject.Find("SpawnPoints").GetComponent<SpawnPoints>();
 
         if (GM.TempGameOBJ == this.gameObject)
         {
@@ -88,8 +114,14 @@ public class DiceManager : MonoBehaviour
                 {
                     if (DM._Level == _Level && DM.type == type)
                     {
+                        //SP.isDice[,] = false;
+
                         Destroy(GM.TempGameOBJ);
+                        DM.type = (DiceType)Random.Range(0, 5);
                         DM.LevelUp();
+
+                        // SP.isDice[GM.index_X, GM.index_Z] = false;
+                        //spawnPoints.SpaceCount++;
                     }
                 }
             }

@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public float EnemyHP = 100.0f;
     public float BulletDamage;
     SpawnPoints spawnPoints;
-    public Bullet bulletPrefab;
+    public Bullet    bulletPrefab;
 
     private bool DieCheck=false;
     private void Start()

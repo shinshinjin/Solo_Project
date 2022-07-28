@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public Vector3 disVec; // 유도 위치
     public float timerForDel; // 자동삭제 타이머
     public float timer; // 자동삭제 타이머
-    public float damage = 25f;
+    public float damage = 10f;
     EnemyController enemyController;
 
     void Start()
@@ -28,14 +28,13 @@ public class Bullet : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
-       
-
         if(target == null)
         {
             Destroy(gameObject);
         }
 
         MeshRenderer mr = target.GetComponent<MeshRenderer>();
+
        if (mr.enabled == false)
         {
             Destroy(gameObject);

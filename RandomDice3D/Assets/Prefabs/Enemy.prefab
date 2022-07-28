@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemySpeed: 1
   GoalTarget: {fileID: 0}
+  GaveOverTarget: {fileID: 0}
+  PlayerHP: 10
 --- !u!114 &6079683351578643969
 MonoBehaviour:
   m_ObjectHideFlags: 0

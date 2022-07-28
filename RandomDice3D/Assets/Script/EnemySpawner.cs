@@ -6,19 +6,22 @@ public class EnemySpawner : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    public float timeBetweenWaves = 5f;
-    public int MaxEnemyCount = 5; // 최대 적 수
+    //public float timeBetweenWaves = 5f;
+    //public int MaxEnemyCount = 10; // 최대 적 수
     public Vector3 _poolPosition = new Vector3(100, 100, 100);
 
 
     private List<EnemyMove> _enemies = new List<EnemyMove>(); // enemy 위치를 담을 곳.
     //private GameObject[] _enemies; // enemy 위치를 담을 곳.
-    private float countDown = 2f;
+    //private float countDown = 2f;
     private int waveIndex = 1;
     private float _coolTime;
 
     [SerializeField]
-    private int MaxWave =10 ;
+    private int MaxWave = 10;
+    [SerializeField]
+    private int GameWave = 1;
+    private int MaxGameWave = 10;
 
     //void Start()
     //{
@@ -36,6 +39,12 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(SpawnWave());
     }
+
+    private void Update()
+    {
+        // 필드에 적이 존재하지 않을때 생성
+    }
+
     /*void Update()
     {
         if (countDown <= 0f)
@@ -48,19 +57,24 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-       
         for (int i = 0; i < MaxWave; i++)
         {
             SpawnEnemy();
-            
-            yield return new WaitForSeconds(5f);
+
+            yield return new WaitForSeconds(2f);
         }
+        //MaxWave++;
+    }
+
+    void NextWave()
+    {
+        SpawnWave();
     }
 
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        waveIndex++;
+        //waveIndex++;
     }
 }
 

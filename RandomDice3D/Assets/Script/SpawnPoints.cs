@@ -6,19 +6,29 @@ using TMPro;
 
 public class SpawnPoints : MonoBehaviour
 {
-    public GameObject[] prefabs;
-    public static SpawnPoints Instance;
-    public bool[,] isDice;
+    // 재화
     public float PlayerMoney = 100f;
     public float BuyMoney = 10f;
-    public Transform OriginSpawnTransform;
 
-    private float SpaceCount = 25;
+    // 주사위 생성 횟수제한(안걸면 폭발함)
+    public int SpaceCount = 25;
+
+    // 프리팹
+    public GameObject[] prefabs;
+
+    // 텍스트
+    public TextMeshProUGUI restMoney_TXT;
+    public TextMeshProUGUI UpgradeCost_TXT;
+
+    // Dice 위치값 받는 곳
+    public bool[,] isDice;
+    public static SpawnPoints Instance;
+    public Transform OriginSpawnTransform;
     private BoxCollider area;
     private List<GameObject> gameObjects = new List<GameObject>();
-    private Transform[,] spawnPositions;
 
-    public TextMeshProUGUI restMoney_TXT;
+    //private Transform[,] spawnPositions;
+
 
     void Start()
     {
@@ -33,6 +43,7 @@ public class SpawnPoints : MonoBehaviour
     void Texting()
     {
         restMoney_TXT.text = PlayerMoney.ToString();
+        UpgradeCost_TXT.text = BuyMoney.ToString();
     }
 
     public void Dice_Generate_BTN()
@@ -45,8 +56,6 @@ public class SpawnPoints : MonoBehaviour
                 SpaceCount--;
                 PlayerMoney -= BuyMoney;
                 BuyMoney += 10f;
-
-                
             }
         }
     }
