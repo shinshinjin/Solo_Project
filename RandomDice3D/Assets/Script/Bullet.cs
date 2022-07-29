@@ -27,13 +27,13 @@ public class Bullet : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
+        MeshRenderer mr = target.GetComponent<MeshRenderer>();
 
         if(target == null)
         {
             Destroy(gameObject);
         }
 
-        MeshRenderer mr = target.GetComponent<MeshRenderer>();
 
        if (mr.enabled == false)
         {

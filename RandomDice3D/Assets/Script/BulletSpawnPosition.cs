@@ -30,21 +30,8 @@ public class BulletSpawnPosition : MonoBehaviour
             {
                 timeAfterSpawn = 0f;
 
-
                 GameObject Bullet
                     = Instantiate(bulletPrefab, transform.position, transform.rotation);
-
-                /*if(부모 다이스의 타입이 불잉ㄹ 댸)
-                 * {
-                 * Bullet(오브젝).Bullet(스크립트).speed(변수) = 10;              
-                   } 
-                 else if (부모다이스의 타입이 어떵떠얻일)
-                 {
-                 * Bullet(오브젝).Bullet(스크립트).speed(변수) = 10;
-                  }
-                Gameobject a = gameobject.transform.getparent
-                Gameobject b = a.transform.get...*/
-
 
                 spawnRate = 1f;
             }

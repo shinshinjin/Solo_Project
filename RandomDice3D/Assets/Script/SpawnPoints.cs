@@ -50,7 +50,7 @@ public class SpawnPoints : MonoBehaviour
     {
         if (PlayerMoney >= BuyMoney)
         {
-            if ( SpaceCount > 0)
+            if (SpaceCount > 0)
             {
                 Spawn();
                 SpaceCount--;
@@ -61,7 +61,7 @@ public class SpawnPoints : MonoBehaviour
     }
 
     // 위치 랜덤으로 받기(중복없이)
-    private Vector3 GetRandomPosition()
+    private Vector3 GetRandomPosition(out int col, out int row)
     {
         int randomRow = 0;
         int randomCol = 0;
@@ -73,6 +73,8 @@ public class SpawnPoints : MonoBehaviour
         } while (isDice[randomRow, randomCol]);
 
         isDice[randomRow, randomCol] = true;
+        col = randomCol;
+        row = randomRow;
 
         Vector3 toRet = OriginSpawnTransform.position;
         toRet.x += randomCol * -2f;
@@ -87,9 +89,12 @@ public class SpawnPoints : MonoBehaviour
         int selection = Random.Range(0, prefabs.Length);
         GameObject selectedPrefab = prefabs[selection];
 
-        Vector3 spawnPos = GetRandomPosition();
+        int col;
+        int row;
+        Vector3 spawnPos = GetRandomPosition(out col, out row);
 
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
-        gameObjects.Add(instance);   
+        instance.GetComponent<DiceManager>().DiceIndex = new int[2] { col, row };
+        gameObjects.Add(instance);
     }
 }

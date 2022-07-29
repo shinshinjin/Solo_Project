@@ -11,15 +11,13 @@ public class GameManager : MonoBehaviour
     public bool IsTouch;
     public Transform[] target;
     public GameObject TempGameOBJ;
+    public DiceManager _pickedDice;
 
     private bool IsFirst;
     private Vector3 resetPosition;
 
     private int _layerMask;
-    private DiceManager _pickedDice;
     private Vector3 _dicePrevPosition;
-
-    DiceManager DM;
 
     private void Awake()
     {
@@ -28,6 +26,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
     private void Start()
     {
         LayerMask mask = LayerMask.NameToLayer("Dice");
@@ -51,8 +50,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            IsTouch = true;
             releaseDice();
+            IsTouch = true;
         }
     }
 
@@ -74,6 +73,7 @@ public class GameManager : MonoBehaviour
     }
 
     private static readonly float PICKED_HEIGHT = 1f;
+
     private void moveDice()
     {
         if (_pickedDice == null)
@@ -95,13 +95,13 @@ public class GameManager : MonoBehaviour
 
         // TO DO : 위치 정렬
 
-        Vector3 newPosition = _pickedDice.transform.position;
-        newPosition.y -= PICKED_HEIGHT;
-        _pickedDice.transform.position = newPosition;
+        // 뒀을 때, 만약에 들고있는것과 내려놓는것이 같은 타입이라면 합쳐짐
+
+        // 아니라면 원래 자리로 돌아감
+
+        _pickedDice.transform.position = _dicePrevPosition;
 
         _pickedDice = null;
         _dicePrevPosition = Vector3.zero;
     }
-
-    
 }

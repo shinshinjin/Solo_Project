@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.tag == "Bullet")
         {
-            Debug.Log("∫“∑ø »Æ¿Œ");
+            //Debug.Log("∫“∑ø »Æ¿Œ");
             //EnemyHP -= BulletDamage;
             EnemyHP -= bulletPrefab.damage;
         }
