@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 // 플레이어 체력 감소 (적이 골인하면)
 // 게임오브젝트 하나 받아서 충돌체에 닿으면 적 사라지고, 체력 감소
@@ -13,7 +16,6 @@ public class GameManager : MonoBehaviour
     public GameObject TempGameOBJ;
     public DiceManager _pickedDice;
 
-    private bool IsFirst;
     private Vector3 resetPosition;
 
     private int _layerMask;
@@ -39,7 +41,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             pickDice();
-            IsFirst = true;
             IsTouch = false;
         }
 
@@ -92,16 +93,14 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
-        // TO DO : 위치 정렬
-
-        // 뒀을 때, 만약에 들고있는것과 내려놓는것이 같은 타입이라면 합쳐짐
-
-        // 아니라면 원래 자리로 돌아감
-
         _pickedDice.transform.position = _dicePrevPosition;
 
         _pickedDice = null;
         _dicePrevPosition = Vector3.zero;
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

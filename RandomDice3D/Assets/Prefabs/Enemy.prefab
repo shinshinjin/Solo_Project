@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6079683351578643971}
   - component: {fileID: 6079683351578643970}
   - component: {fileID: 6079683351578643969}
-  - component: {fileID: -8942149552582793507}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -152,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40806fdaa1418a9438fd695a0d5a4363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySpeed: 1
+  EnemySpeed: 2
   GoalTarget: {fileID: 0}
   GaveOverTarget: {fileID: 0}
   PlayerHP: 10
@@ -169,25 +168,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyHP: 100
-  BulletDamage: 0
   bulletPrefab: {fileID: 1180520470573249464, guid: 5cab16f74ba44d1468eea3077925a75b, type: 3}
---- !u!95 &-8942149552582793507
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6079683351578643993}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa2e0a6c082623541abb0d4b40147f0e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
